@@ -1,51 +1,30 @@
 import javax.swing.JOptionPane;
-
-
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 
 public class AgeCalculation {
 
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		 // accepts the birthdate as a string using JOptionPane
+		 // accepts your birthday as a string using JOptionPane
 		 String bday = JOptionPane.showInputDialog("Enter your birthdate (MM/DD/YYYY)");
-		String[] birthday = bday.split("/");
-				
-		//birthday month
-	        int birthM = Integer.parseInt(birthday[0]);
-	      //birthday day
-	        int birthD = Integer.parseInt(birthday[1]);
-	        // birthday year
-	        int birthY = Integer.parseInt(birthday[2]);
-				
-	   
-	   System.out.println(birthM);
-	   System.out.println(birthD);
-	   System.out.println(birthY);
-	    
-	   // accepts the current date as a string using JOptionPane
+		 
+		 //accepts today's date as a string using the JOption Pane
 		 String today = JOptionPane.showInputDialog("Enter today's date (MM/DD/YYYY)");
-		 String[] day2 = today.split("/");
+		 
+		 //make the string a local date
+		 LocalDate bdayLD = LocalDate.parse(bday, DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+		LocalDate todayLD = LocalDate.parse(today, DateTimeFormatter.ofPattern("MM/DD/YYYY"));
+		 
+		// find the days between today and your birthday		
+		Period m = Period.between(bdayLD, todayLD);
 		
-		 //todays month
-		 int dayM = Integer.parseInt(day2[0]);
-		 //todays date
-		 int dayD = Integer.parseInt(day2[1]);
-		 // todays year
-		 int dayY = Integer.parseInt(day2[2]);
-		 
-			
-		   System.out.println(dayM);
-		   System.out.println(dayD);
-		   System.out.println(dayY);
-		   
-		  System.out.print("My Age is 20 years 11 months ");
-		 
-	
-
- 
+		// find the age
+		JOptionPane.showMessageDialog(null, "You are " +m.getYears() + " years and " + m.getMonths() + " months old.");
 	}
+			
 }
 
